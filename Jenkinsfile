@@ -13,7 +13,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: '2'))
         ansiColor('xterm')
     }
-
+    triggers { 
+        cron('@daily, @midnight') 
+    }
     stages {
         stage("system tests") {
             agent {
