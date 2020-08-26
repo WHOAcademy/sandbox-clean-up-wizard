@@ -26,7 +26,6 @@ pipeline {
             steps {
                 echo '### 🙀🗡 Kill -9 project resources [svc, route, dc, pvc] ###'
                 sh '''
-                    oc project ${NAMESPACE}
                     oc get dc --no-headers -n ${NAMESPACE} | cut -d' ' -f 1 | xargs oc delete -n ${NAMESPACE} dc
                     oc get svc --no-headers -n ${NAMESPACE} | cut -d' ' -f 1 | xargs oc delete -n ${NAMESPACE} svc
                     oc get route --no-headers -n ${NAMESPACE} | cut -d' ' -f 1 | xargs oc delete -n ${NAMESPACE} route
